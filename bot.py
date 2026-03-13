@@ -8,7 +8,6 @@ from aiogram.client.session.aiohttp import AiohttpSession
 import types
 from bottoken import BOT_TOKEN
 
-
 dp = Dispatcher()
 
 class TaskState(StatesGroup):
@@ -105,7 +104,7 @@ async def stats(message: types.Message):
 async def main():
     session = AiohttpSession(proxy="http://oNKKt5:H0ET6w@161.115.231.116:9019")
     bot = Bot(
-        token=BOT_TOKEN,
+        token="8713115685:AAFG4mhZZM7n7AuxftJlYAvf7aDmtgAYQUA",
         session=session
     )
 
