@@ -7,6 +7,8 @@ from aiogram.types import Message
 from aiogram.client.session.aiohttp import AiohttpSession
 import types
 from bottoken import BOT_TOKEN
+import os
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 dp = Dispatcher()
 
