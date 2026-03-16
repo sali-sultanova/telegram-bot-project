@@ -106,7 +106,7 @@ async def stats(message: Message):
 async def main():
     #session = AiohttpSession(proxy="http://oNKKt5:H0ET6w@161.115.231.116:9019")
     bot = Bot(
-        token="8713115685:AAFG4mhZZM7n7AuxftJlYAvf7aDmtgAYQUA",
+        token=BOT_TOKEN,
         #session=session
     )
 
