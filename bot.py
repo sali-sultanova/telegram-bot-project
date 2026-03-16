@@ -6,7 +6,7 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 from aiogram.client.session.aiohttp import AiohttpSession
 import types
-from bottoken import BOT_TOKEN
+#from bottoken import BOT_TOKEN
 import os
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
