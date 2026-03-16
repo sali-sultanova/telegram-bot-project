@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 from aiogram.client.session.aiohttp import AiohttpSession
-import types
+#import types
 #from bottoken import BOT_TOKEN
 import os
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -24,12 +24,12 @@ async def main_start(message: Message):
     await message.answer(f"Добро пожаловать., {message.from_user.first_name}!\n Я бот-менеджер задач\n Команды: \n /add - добавление задачи\n /tasks - просмотр задач\n /done - отметить задачу выполненной \n /delete - удалить задачу \n /stats - статистика ")
 
 @dp.message(Command("add"))
-async def adds(message: types.Message, state: FSMContext):
+async def adds(message: Message, state: FSMContext):
     await message.answer(f"Напиши текст задачи")
     await state.set_state(TaskState.add1)
 
 @dp.message(TaskState.add1)
-async def add_finish(message: types.Message, state: FSMContext):
+async def add_finish(message: Message, state: FSMContext):
     id = message.from_user.id
     if id not in tasks:
         tasks[id] = []
@@ -39,7 +39,7 @@ async def add_finish(message: types.Message, state: FSMContext):
 
 
 @dp.message(Command("tasks"))
-async def alltask(message: types.Message):
+async def alltask(message: Message):
     tasks1 = tasks.get(message.from_user.id, [])
     if not tasks1:
         return await message.answer("Список пуст.")
@@ -56,12 +56,12 @@ async def alltask(message: types.Message):
 
 
 @dp.message(Command("done"))
-async def done_start(message: types.Message, state: FSMContext):
+async def done_start(message: Message, state: FSMContext):
     await message.answer("Напиши номер выполненной задачи:")
     await state.set_state(TaskState.done1)
 
 @dp.message(TaskState.done1)
-async def done_finish(message: types.Message, state: FSMContext):
+async def done_finish(message: Message, state: FSMContext):
     tasks1 = tasks.get(message.from_user.id, [])
     try:
         ind = int(message.text) - 1
@@ -76,12 +76,12 @@ async def done_finish(message: types.Message, state: FSMContext):
 
 
 @dp.message(Command("delete"))
-async def delete_start(message: types.Message, state: FSMContext):
+async def delete_start(message: Message, state: FSMContext):
     await message.answer("Напиши номер задачи для удаления:")
     await state.set_state(TaskState.delete1)
 
 @dp.message(TaskState.delete1)
-async def delete_finish(message: types.Message, state: FSMContext):
+async def delete_finish(message: Message, state: FSMContext):
     tasks1 = tasks.get(message.from_user.id, [])
     try:
         ind = int(message.text) - 1
@@ -93,7 +93,7 @@ async def delete_finish(message: types.Message, state: FSMContext):
 
 
 @dp.message(Command("stats"))
-async def stats(message: types.Message):
+async def stats(message: Message):
     tasks1 = tasks.get(message.from_user.id, [])
     total = len(tasks1)
     donecount = 0
